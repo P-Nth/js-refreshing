@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <p>Let's play Rock-Paper-Scissors!</p>
+    <div>
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+        <p id="result"></p>
+        <p id="outcome"></p>
+        <hr/>
+        <span>Wins: <span id="wins">0</span></span>
+        <span>Ties: <span id="ties">0</span></span>
+        <span>Loses: <span id="loses">0</span></span>
+        <hr/>
+    </div>
+    <div>
+        <p></p>
+        <button id="subscribe">Subscribe</button>
+    </div>
+
+    <script>
+        // Imports
+        const rock = document.getElementById('rock');
+        const paper = document.getElementById('paper');
+        const scissors = document.getElementById('scissors');
+        const subscribe = document.getElementById('subscribe');
+        const resultDisplay = document.getElementById('result');
+        const outcomeDisplay = document.getElementById('outcome');
+
+        const winsElement = document.getElementById('wins');
+        const tiesElement = document.getElementById('ties');
+        const losesElement = document.getElementById('loses');
+
+        // Variables
+        let computerMove = '';
+        let yourChoice = '';
+
+        let wins = 0;
+        let ties = 0;
+        let loses = 0;
+
+        // Function: Play
+        function play() {
+            const randomNumber = Math.random();
+
+            if (randomNumber >= 0 && randomNumber < 1/3) computerMove = 'rock';
+            else if (randomNumber >= 1/3 && randomNumber < 2/3) computerMove = 'paper';
+            else if(randomNumber >= 2/3 && randomNumber < 1) computerMove = 'scissors';
+
+            finalResult();
+            updateScore();
+        }
+
+        // Function Update Scores
+        function updateScore() {
+            winsElement.textContent = wins;
+            tiesElement.textContent = ties;
+            losesElement.textContent = loses;
+        }
+
+        // Function Outcome
+        function finalResult() {
+            if (computerMove === yourChoice) {
+                outcomeDisplay.textContent = 'It\'s a Tie! '
+                resultDisplay.textContent = `You chose: ${yourChoice}, Computer chose: ${computerMove}`;
+                ties++;
+            }
+            else if (
+                (computerMove === 'rock' && yourChoice === 'scissors') ||
+                (computerMove === 'paper' && yourChoice === 'rock') ||
+                (computerMove === 'scissors' && yourChoice === 'paper')
+            ) {
+                outcomeDisplay.textContent = 'You lose!'
+                resultDisplay.textContent = `You chose: ${yourChoice}, Computer chose: ${computerMove}`;
+                loses++;
+            } else {
+                outcomeDisplay.textContent = 'You win!'
+                resultDisplay.textContent = `You chose: ${yourChoice}, Computer chose: ${computerMove}`;
+                wins++;
+            }
+        }
+
+        // Function: User Choice
+        function choice(move) {
+            yourChoice = move;
+        }
+
+        rock.addEventListener('click', function() {
+            choice('rock');
+            play();
+        });
+
+        paper.addEventListener('click', function() {
+            choice('paper');
+            play();
+        });
+
+        scissors.addEventListener('click', function() {
+            choice('scissors');
+            play();
+        });
+
+        // Subscribe button
+        subscribe.addEventListener('click', function() {
+            if (subscribe.innerText === "Subscribe") {
+                subscribe.textContent = 'Subscribed';
+            } else {
+                subscribe.textContent = 'Subscribe';
+            }
+        });
+
+    </script>
+</body>
+</html>
