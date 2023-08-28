@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Loader</title>
+</head>
+<style>
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+<body style="margin: 0; padding: 0; box-sizing: border-box;">
+    <div style="
+        display: grid; gap: 1rem; place-items: center;
+        align-content: center; width: 100vw; height: 100vh;
+    ">
+        <div id="loader" style="
+            padding: 2rem; border: 5px solid rgba(0, 0, 0, 0.1);
+            border-left-color: royalblue; border-radius: 50%;
+            animation: spin 1s linear infinite;
+        "></div>
+
+        <p>Loading...</p>
+
+        <hr />
+    </div>
+</body>
+</html>
